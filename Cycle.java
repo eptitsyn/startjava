@@ -9,11 +9,11 @@ public class Cycle {
 		int sum = 0;
 		int i = 10;
 		do {
-			if(!(i % 2 == 0)) {
+			if(i % 2 != 0) {
 				sum += i;
 			}
 			i++;
 		} while (i <= 20);
-		System.out.println("sum odd of [10, 20] = " + i);
+		System.out.println("sum odd of [10, 20] = " + sum);
 	}
 }
