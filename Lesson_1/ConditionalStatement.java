@@ -30,6 +30,5 @@ public class ConditionalStatement {
         } else {
             System.out.println("subject's first letter of name som letter other than M & I");
         }
-
     }
 }
