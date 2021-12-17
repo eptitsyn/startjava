@@ -1,10 +1,10 @@
-public class Calculator  {	
+public class Calculator  {  
     public static void main(String[] args) {
-        System.out.print("Enter first operand:");
+        System.out.println("Enter first operand:");
         int a = 2;
-        System.out.print("Enter operation:");
+        System.out.println("Enter operation:");
         char op = '^';
-        System.out.print("Enter second operand:");
+        System.out.println("Enter second operand:");
         int b = 3;
 
         double result = 0;
