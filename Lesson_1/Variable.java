@@ -4,7 +4,7 @@ public class Variable {
 		short screenSize = 16;
 		int cpuFrequeency = 2000;
 		long hddCapacity = 1000;
-		float bodyThickness = (float) 23.6;
+		float bodyThickness = 23.6f;
 		double bezelThikness = 7.3;
 		char modelLetter = 'A';
 		boolean isLaptop = true;
