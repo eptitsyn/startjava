@@ -26,7 +26,7 @@ public class GuessNumber {
         Random r = new Random();
         int min = 1;
         int max = 100;
-        randomNumber = r.nextInt(max-min) + min;
+        randomNumber = r.nextInt(max - min) + min;
     }
 
     public boolean guess(int guess) {
