@@ -7,15 +7,15 @@ public class Person {
     int age = 25;
 
     public void walk() {
-        System.out.println(name+" is walking.");
+        System.out.println(name + " is walking.");
     }
 
     public void sit() {
-        System.out.println(name+" is sitting.");
+        System.out.println(name + " is sitting.");
     }
 
     public void run() {
-        System.out.println(name+" is running.");
+        System.out.println(name + " is running.");
     }
 
     public void speak() {
@@ -23,6 +23,6 @@ public class Person {
     }
 
     public void learnJava() {
-        System.out.println(name+" is walking.");
+        System.out.println(name + " is walking.");
     }
 }
