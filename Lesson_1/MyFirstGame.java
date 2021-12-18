@@ -12,9 +12,7 @@ public class MyFirstGame  {
             guess = nextGuess;
             System.out.print("Guess the number: ");
             System.out.println(guess);
-            if (guess == randomNumber) { 
-                System.out.println("Поздравляю, число угадано!");
-            } else if (guess > randomNumber) {
+            if (guess > randomNumber) {
                 System.out.println("Данное число больше того, что загадал компьютер");
                 nextGuess = guess - guessStep;
             } else {
@@ -25,5 +23,6 @@ public class MyFirstGame  {
                 guessStep /= 2;
             }
         } while (guess != randomNumber);
+        System.out.println("Поздравляю, число угадано!");
     }
 }
