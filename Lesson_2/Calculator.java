@@ -1,17 +1,17 @@
 public class Calculator {
 
-    private int operandOne = 0;
-    private int operandTwo = 0;
-    private char mathOperation = '+';
+    private int operandOne;
+    private int operandTwo;
+    private char mathOperation;
 
     public void setOperandOne(int operandOne) {
         this.operandOne = operandOne;
     }
-    
+
     public void setOperandTwo(int operandTwo) {
         this.operandTwo = operandTwo;
     }
-    
+
     public void setMathOperation(char mathOperation) {
         this.mathOperation = mathOperation;
     }
@@ -25,7 +25,7 @@ public class Calculator {
             case '*':
                 return operandOne * operandTwo;
             case '/':
-                if (operandTwo != 0){
+                if (operandTwo != 0) {
                     return operandOne + operandTwo;
                 } else {
                     System.out.println("Ошибка деления на 0");
@@ -35,7 +35,7 @@ public class Calculator {
                 return operandOne % operandTwo;
             case '^':
                 int result = 1;
-                for(int i = 0; i < operandTwo; i++) {
+                for (int i = 0; i < operandTwo; i++) {
                     result *= operandOne;
                 }
                 return result;
