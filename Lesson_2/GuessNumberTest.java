@@ -1,6 +1,20 @@
 import java.util.Scanner;
 
 public class GuessNumberTest {
+
+    private static boolean continueGame() {
+        String continueGameAnswer;
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.print("Хотите продолжить игру? [yes/no]:");
+            continueGameAnswer = scanner.nextLine();
+            if (continueGameAnswer.equals("no")) {
+                return false;
+            }
+        } while (!continueGameAnswer.equals("yes"));
+        return true;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -9,22 +23,9 @@ public class GuessNumberTest {
         System.out.print("Имя второго игрока:");
         Player player2 = new Player(scanner.nextLine());
 
-        String continueGameAnswer = "yes";
-        while (continueGameAnswer.equals("yes")) {
+        do {
             GuessNumber game = new GuessNumber(player1, player2);
-            game.startNewGame();
-
-            while (game.getGameIsOn()) {
-                game.doTurn();
-            }
-
-            do {
-                System.out.print("Хотите продолжить игру? [yes/no]:");
-                continueGameAnswer = scanner.nextLine();
-                if (continueGameAnswer.equals("no")) {
-                    return;
-                }
-            } while (!continueGameAnswer.equals("yes"));
-        }
+            game.start();
+        } while (continueGame());
     }
 }

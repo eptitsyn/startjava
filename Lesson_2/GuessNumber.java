@@ -5,7 +5,7 @@ public class GuessNumber {
     private Player playerOne;
     private Player playerTwo;
     private Player currentPlayer;
-    private int randomNumber;
+    private int hiddenNumber;
     private boolean gameIsOn;
 
     public GuessNumber(Player playerOne, Player playerTwo) {
@@ -14,43 +14,38 @@ public class GuessNumber {
         currentPlayer = playerOne;
     }
 
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
-
-    public void startNewGame() {
-        setNewRandomNumber();
+    public void start() {
+        generateSecretNumber();
         currentPlayer = playerOne;
         gameIsOn = true;
+        while (gameIsOn) {
+            makeMove();
+        }
     }
 
-    public void setNewRandomNumber() {
+    private void generateSecretNumber() {
         Random r = new Random();
         int min = 1;
         int max = 100;
-        randomNumber = r.nextInt(max - min) + min;
+        hiddenNumber = r.nextInt(max - min) + min;
     }
 
-    public boolean getGameIsOn() {
-        return gameIsOn;
-    }
-
-    public void doTurn() {
+    private void makeMove() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print(getCurrentPlayer().getName() + " введите число:");
-        if (guessAndCheckIfWon(Integer.parseInt(scanner.nextLine()))) {
-            System.out.print(getCurrentPlayer().getName() + " победил.");
+        System.out.print(currentPlayer.getName() + " введите число:");
+        if (compareNumbers(Integer.parseInt(scanner.nextLine()))) {
+            System.out.print(currentPlayer.getName() + " победил.");
             gameIsOn = false;
         } else {
             nextPlayer();
         }
     }
 
-    public boolean guessAndCheckIfWon(int guessedNumber) {
+    private boolean compareNumbers(int guessedNumber) {
         currentPlayer.setNumber(guessedNumber);
-        if (guessedNumber == randomNumber) {
+        if (guessedNumber == hiddenNumber) {
             return true;
-        } else if (guessedNumber > randomNumber) {
+        } else if (guessedNumber > hiddenNumber) {
             System.out.println("Данное число больше того, что загадал компьютер");
         } else {
             System.out.println("Данное число меньше того, что загадал компьютер");
@@ -58,7 +53,7 @@ public class GuessNumber {
         return false;
     }
 
-    public void nextPlayer() {
+    private void nextPlayer() {
         if (currentPlayer == playerOne) {
             currentPlayer = playerTwo;
         } else {
