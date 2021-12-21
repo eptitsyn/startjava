@@ -17,7 +17,8 @@ public class GuessNumber {
     public void start() {
         generateSecretNumber();
         currentPlayer = playerOne;
-        while (makeMove()) {};
+        while (makeMove()) {
+        }
     }
 
     private int generateSecretNumber() {
