@@ -23,6 +23,7 @@ public class CalculatorTest {
         do {
             System.out.print("Enter first operand:");
             calculator.setOperandOne(scanner.nextInt());
+            scanner.nextLine();//consume crlf
             System.out.print("Enter operation:");
             calculator.setMathOperation(scanner.nextLine().charAt(0));
             System.out.print("Enter second operand:");
