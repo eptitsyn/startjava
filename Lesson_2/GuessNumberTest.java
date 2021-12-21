@@ -5,14 +5,15 @@ public class GuessNumberTest {
     private static boolean continueGame() {
         String continueGameAnswer;
         Scanner scanner = new Scanner(System.in);
-        do {
+        while (true) {
             System.out.print("Хотите продолжить игру? [yes/no]:");
             continueGameAnswer = scanner.nextLine();
             if (continueGameAnswer.equals("no")) {
                 return false;
+            } else if (continueGameAnswer.equals("yes")) {
+                return true;
             }
-        } while (!continueGameAnswer.equals("yes"));
-        return true;
+        }
     }
 
     public static void main(String[] args) {

@@ -6,38 +6,36 @@ public class GuessNumber {
     private Player playerTwo;
     private Player currentPlayer;
     private int hiddenNumber;
-    private boolean gameIsOn;
 
     public GuessNumber(Player playerOne, Player playerTwo) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
         currentPlayer = playerOne;
+        hiddenNumber = generateSecretNumber();
     }
 
     public void start() {
         generateSecretNumber();
         currentPlayer = playerOne;
-        gameIsOn = true;
-        while (gameIsOn) {
-            makeMove();
-        }
+        while (makeMove()) {};
     }
 
-    private void generateSecretNumber() {
+    private int generateSecretNumber() {
         Random r = new Random();
         int min = 1;
         int max = 100;
-        hiddenNumber = r.nextInt(max - min) + min;
+        return r.nextInt(max - min) + min;
     }
 
-    private void makeMove() {
+    private boolean makeMove() {
         Scanner scanner = new Scanner(System.in);
         System.out.print(currentPlayer.getName() + " введите число:");
-        if (compareNumbers(Integer.parseInt(scanner.nextLine()))) {
+        if (compareNumbers(scanner.nextInt())) {
             System.out.print(currentPlayer.getName() + " победил.");
-            gameIsOn = false;
+            return false;
         } else {
             nextPlayer();
+            return true;
         }
     }
 
@@ -54,10 +52,6 @@ public class GuessNumber {
     }
 
     private void nextPlayer() {
-        if (currentPlayer == playerOne) {
-            currentPlayer = playerTwo;
-        } else {
-            currentPlayer = playerOne;
-        }
+        currentPlayer = (currentPlayer == playerOne) ? playerTwo : playerOne;
     }
 }
