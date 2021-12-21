@@ -3,11 +3,10 @@ import java.util.Scanner;
 public class CalculatorTest {
 
     private static boolean continueCalculations() {
-        String continueCalculations;
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("Хотите продолжить вычисления? [yes/no]:");
-            continueCalculations = scanner.nextLine();
+            String continueCalculations = scanner.nextLine();
             if (continueCalculations.equals("no")) {
                 return false;
             } else if (continueCalculations.equals("yes")) {

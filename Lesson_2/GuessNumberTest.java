@@ -3,11 +3,10 @@ import java.util.Scanner;
 public class GuessNumberTest {
 
     private static boolean continueGame() {
-        String continueGameAnswer;
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("Хотите продолжить игру? [yes/no]:");
-            continueGameAnswer = scanner.nextLine();
+            String continueGameAnswer = scanner.nextLine();
             if (continueGameAnswer.equals("no")) {
                 return false;
             } else if (continueGameAnswer.equals("yes")) {
