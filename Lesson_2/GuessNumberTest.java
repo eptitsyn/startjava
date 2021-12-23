@@ -2,14 +2,15 @@ import java.util.Scanner;
 
 public class GuessNumberTest {
 
-    private static boolean continueGame() {
+    private static boolean userAnswer() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("Хотите продолжить игру? [yes/no]:");
             String continueGameAnswer = scanner.nextLine();
             if (continueGameAnswer.equals("no")) {
                 return false;
-            } else if (continueGameAnswer.equals("yes")) {
+            }
+            if (continueGameAnswer.equals("yes")) {
                 return true;
             }
         }
@@ -26,6 +27,6 @@ public class GuessNumberTest {
         do {
             GuessNumber game = new GuessNumber(player1, player2);
             game.start();
-        } while (continueGame());
+        } while (userAnswer());
     }
 }

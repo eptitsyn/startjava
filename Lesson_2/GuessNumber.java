@@ -15,17 +15,15 @@ public class GuessNumber {
     }
 
     public void start() {
-        generateSecretNumber();
         currentPlayer = playerOne;
         while (makeMove()) {
+            currentPlayer = (currentPlayer == playerOne) ? playerTwo : playerOne;
         }
     }
 
     private int generateSecretNumber() {
         Random r = new Random();
-        int min = 1;
-        int max = 100;
-        return r.nextInt(max - min) + min;
+        return r.nextInt(100) + 1;
     }
 
     private boolean makeMove() {
@@ -34,25 +32,18 @@ public class GuessNumber {
         if (compareNumbers(scanner.nextInt())) {
             System.out.print(currentPlayer.getName() + " победил.");
             return false;
-        } else {
-            nextPlayer();
-            return true;
         }
+        return true;
     }
 
     private boolean compareNumbers(int guessedNumber) {
         currentPlayer.setNumber(guessedNumber);
         if (guessedNumber == hiddenNumber) {
             return true;
-        } else if (guessedNumber > hiddenNumber) {
-            System.out.println("Данное число больше того, что загадал компьютер");
-        } else {
-            System.out.println("Данное число меньше того, что загадал компьютер");
         }
+        System.out.println("Данное число "
+                + (guessedNumber > hiddenNumber ? " больше" : " меньше")
+                + " того, что загадал компьютер");
         return false;
-    }
-
-    private void nextPlayer() {
-        currentPlayer = (currentPlayer == playerOne) ? playerTwo : playerOne;
     }
 }

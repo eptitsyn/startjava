@@ -2,14 +2,15 @@ import java.util.Scanner;
 
 public class CalculatorTest {
 
-    private static boolean continueCalculations() {
+    private static boolean userAnswer() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("Хотите продолжить вычисления? [yes/no]:");
             String continueCalculations = scanner.nextLine();
             if (continueCalculations.equals("no")) {
                 return false;
-            } else if (continueCalculations.equals("yes")) {
+            }
+            if (continueCalculations.equals("yes")) {
                 return true;
             }
         }
@@ -28,6 +29,6 @@ public class CalculatorTest {
             System.out.print("Enter second operand:");
             calculator.setOperandTwo(scanner.nextInt());
             System.out.println("Результат " + calculator.calculate());
-        } while (continueCalculations());
+        } while (userAnswer());
     }
 }
