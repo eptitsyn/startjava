@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class GuessNumberTest {
 
-    private static boolean userAnswer() {
+    private static boolean isNext() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("Хотите продолжить игру? [yes/no]:");
@@ -27,6 +27,6 @@ public class GuessNumberTest {
         do {
             GuessNumber game = new GuessNumber(player1, player2);
             game.start();
-        } while (userAnswer());
+        } while (isNext());
     }
 }

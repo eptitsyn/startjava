@@ -15,8 +15,12 @@ public class GuessNumber {
     }
 
     public void start() {
-        currentPlayer = playerOne;
-        while (makeMove()) {
+        while (true) {
+            makeMove();
+            if (isWon()) {
+                return;
+            }
+            compareNumber();
             currentPlayer = (currentPlayer == playerOne) ? playerTwo : playerOne;
         }
     }
@@ -26,24 +30,24 @@ public class GuessNumber {
         return r.nextInt(100) + 1;
     }
 
-    private boolean makeMove() {
+    private void makeMove() {
         Scanner scanner = new Scanner(System.in);
         System.out.print(currentPlayer.getName() + " введите число:");
-        if (compareNumbers(scanner.nextInt())) {
-            System.out.print(currentPlayer.getName() + " победил.");
-            return false;
-        }
-        return true;
+        currentPlayer.setNumber(scanner.nextInt());
     }
 
-    private boolean compareNumbers(int guessedNumber) {
-        currentPlayer.setNumber(guessedNumber);
-        if (guessedNumber == hiddenNumber) {
+    private boolean isWon() {
+        if (currentPlayer.getNumber() == hiddenNumber) {
+            System.out.println(currentPlayer.getName() + " победил.");
             return true;
         }
-        System.out.println("Данное число "
-                + (guessedNumber > hiddenNumber ? " больше" : " меньше")
-                + " того, что загадал компьютер");
         return false;
     }
+
+    private void compareNumber() {
+        System.out.println("Данное число "
+                + (currentPlayer.getNumber() > hiddenNumber ? " больше" : " меньше")
+                + " того, что загадал компьютер");
+    }
+
 }
