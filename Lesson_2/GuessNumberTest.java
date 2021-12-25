@@ -4,16 +4,15 @@ public class GuessNumberTest {
 
     private static boolean isNext() {
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        String continueGameAnswer = "";
+        while (!continueGameAnswer.equals("no")) {
             System.out.print("Хотите продолжить игру? [yes/no]:");
-            String continueGameAnswer = scanner.nextLine();
-            if (continueGameAnswer.equals("no")) {
-                return false;
-            }
+            continueGameAnswer = scanner.nextLine();
             if (continueGameAnswer.equals("yes")) {
                 return true;
             }
         }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -23,9 +22,9 @@ public class GuessNumberTest {
         Player player1 = new Player(scanner.nextLine());
         System.out.print("Имя второго игрока:");
         Player player2 = new Player(scanner.nextLine());
+        GuessNumber game = new GuessNumber(player1, player2);
 
         do {
-            GuessNumber game = new GuessNumber(player1, player2);
             game.start();
         } while (isNext());
     }
