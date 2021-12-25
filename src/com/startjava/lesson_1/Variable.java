@@ -1,3 +1,5 @@
+package com.startjava.lesson_1;
+
 public class Variable {
     public static void main(String[] args) {
         byte usbPortsCount = 3;
