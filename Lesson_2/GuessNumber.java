@@ -18,7 +18,7 @@ public class GuessNumber {
         do {
             currentPlayer = (currentPlayer == playerOne) ? playerTwo : playerOne;
             makeMove();
-        } while (!hasWon());
+        } while (currentPlayer.getNumber() != hiddenNumber);
     }
 
     private int generateSecretNumber() {
@@ -26,20 +26,17 @@ public class GuessNumber {
         return r.nextInt(100) + 1;
     }
 
-    private boolean hasWon() {
-        if (currentPlayer.getNumber() == hiddenNumber) {
-            System.out.println(currentPlayer.getName() + " победил.");
-            return true;
-        }
-        System.out.println("Данное число "
-                + (currentPlayer.getNumber() > hiddenNumber ? " больше" : " меньше")
-                + " того, что загадал компьютер");
-        return false;
-    }
-
     private void makeMove() {
         Scanner scanner = new Scanner(System.in);
         System.out.print(currentPlayer.getName() + " введите число:");
-        currentPlayer.setNumber(scanner.nextInt());
+        int playerInput = scanner.nextInt();
+        currentPlayer.setNumber(playerInput);
+
+        if (playerInput == hiddenNumber) {
+            System.out.println(currentPlayer.getName() + " победил.");
+        }
+        System.out.println("Данное число "
+                + (playerInput > hiddenNumber ? " больше" : " меньше")
+                + " того, что загадал компьютер");
     }
 }
