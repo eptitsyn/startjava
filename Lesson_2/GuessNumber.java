@@ -10,15 +10,13 @@ public class GuessNumber {
     public GuessNumber(Player playerOne, Player playerTwo) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
-        hiddenNumber = generateSecretNumber();
     }
 
     public void start() {
-        currentPlayer = playerTwo;
+        hiddenNumber = generateSecretNumber();
         do {
             currentPlayer = (currentPlayer == playerOne) ? playerTwo : playerOne;
-            makeMove();
-        } while (currentPlayer.getNumber() != hiddenNumber);
+        } while (makeMove());
     }
 
     private int generateSecretNumber() {
@@ -26,17 +24,18 @@ public class GuessNumber {
         return r.nextInt(100) + 1;
     }
 
-    private void makeMove() {
+    private boolean makeMove() {
         Scanner scanner = new Scanner(System.in);
         System.out.print(currentPlayer.getName() + " введите число:");
-        int playerInput = scanner.nextInt();
-        currentPlayer.setNumber(playerInput);
+        currentPlayer.setNumber(scanner.nextInt());
 
-        if (playerInput == hiddenNumber) {
+        if (currentPlayer.getNumber() == hiddenNumber) {
             System.out.println(currentPlayer.getName() + " победил.");
+            return false;
         }
         System.out.println("Данное число "
-                + (playerInput > hiddenNumber ? " больше" : " меньше")
+                + (currentPlayer.getNumber() > hiddenNumber ? " больше" : " меньше")
                 + " того, что загадал компьютер");
+        return true;
     }
 }
