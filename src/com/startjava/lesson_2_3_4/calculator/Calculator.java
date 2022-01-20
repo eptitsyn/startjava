@@ -23,7 +23,7 @@ public class Calculator {
             case '+':
                 return operandOne + operandTwo;
             case '-':
-                return operandOne + operandTwo;
+                return operandOne - operandTwo;
             case '*':
                 return operandOne * operandTwo;
             case '/':
@@ -36,11 +36,7 @@ public class Calculator {
             case '%':
                 return operandOne % operandTwo;
             case '^':
-                int result = 1;
-                for (int i = 0; i < operandTwo; i++) {
-                    result *= operandOne;
-                }
-                return result;
+                return Math.pow(operandOne, operandTwo);
             default:
                 System.out.println("Ошибка операции");
                 return 0;

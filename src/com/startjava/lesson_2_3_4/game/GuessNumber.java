@@ -16,9 +16,15 @@ public class GuessNumber {
 
     public void start() {
         hiddenNumber = generateSecretNumber();
+        playerOne.clearNumbers();
+        playerTwo.clearNumbers();
+        System.out.println("У каждого игрока " + playerOne.getMAX_GUESS_TRIES() + " попыток");
         do {
             currentPlayer = (currentPlayer == playerOne) ? playerTwo : playerOne;
-        } while (makeMove());
+        } while (makeMove() && (playerOne.hasTries() || playerTwo.hasTries()));
+        System.out.println("Названные числа:");
+        playerOne.printNumbers();
+        playerTwo.printNumbers();
     }
 
     private int generateSecretNumber() {
@@ -30,9 +36,12 @@ public class GuessNumber {
         Scanner scanner = new Scanner(System.in);
         System.out.print(currentPlayer.getName() + " введите число:");
         currentPlayer.setNumber(scanner.nextInt());
+        if (!currentPlayer.hasTries()) {
+            return true;
+        }
 
         if (currentPlayer.getNumber() == hiddenNumber) {
-            System.out.println(currentPlayer.getName() + " победил.");
+            System.out.println("Игрок " + currentPlayer.getName() + " угадал число с " + currentPlayer.getTryCount() + "попытки");
             return false;
         }
         System.out.println("Данное число "

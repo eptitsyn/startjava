@@ -23,13 +23,14 @@ public class CalculatorTest {
         Scanner scanner = new Scanner(System.in);
 
         do {
-            System.out.print("Enter first operand:");
-            calculator.setOperandOne(scanner.nextInt());
-            scanner.nextLine();//consume crlf
-            System.out.print("Enter operation:");
-            calculator.setMathOperation(scanner.nextLine().charAt(0));
-            System.out.print("Enter second operand:");
-            calculator.setOperandTwo(scanner.nextInt());
+            System.out.println("Введите математическое выражение: ");
+            String[] input  = scanner.nextLine().split(" ");
+            if (input.length != 3) {
+                System.out.println("Неправильное количество введенных параметров");
+            }
+            calculator.setOperandOne(Integer.parseInt(input[0]));
+            calculator.setMathOperation(input[1].charAt(0));
+            calculator.setOperandTwo(Integer.parseInt(input[2]));
             System.out.println("Результат " + calculator.calculate());
         } while (userAnswer());
     }
