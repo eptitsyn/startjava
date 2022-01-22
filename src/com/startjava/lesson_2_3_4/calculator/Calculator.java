@@ -6,19 +6,14 @@ public class Calculator {
     private int operandTwo;
     private char mathOperation;
 
-    public void setOperandOne(int operandOne) {
-        this.operandOne = operandOne;
-    }
-
-    public void setOperandTwo(int operandTwo) {
-        this.operandTwo = operandTwo;
-    }
-
-    public void setMathOperation(char mathOperation) {
-        this.mathOperation = mathOperation;
-    }
-
-    public double calculate() {
+    public double calculate(String s) {
+        String[] input = s.split(" ");
+        if (input.length != 3) {
+            System.out.println("Неправильное количество введенных параметров");
+        }
+        setOperandOne(Integer.parseInt(input[0]));
+        setMathOperation(input[1].charAt(0));
+        setOperandTwo(Integer.parseInt(input[2]));
         switch (mathOperation) {
             case '+':
                 return operandOne + operandTwo;
@@ -41,5 +36,17 @@ public class Calculator {
                 System.out.println("Ошибка операции");
                 return 0;
         }
+    }
+
+    public void setOperandOne(int operandOne) {
+        this.operandOne = operandOne;
+    }
+
+    public void setMathOperation(char mathOperation) {
+        this.mathOperation = mathOperation;
+    }
+
+    public void setOperandTwo(int operandTwo) {
+        this.operandTwo = operandTwo;
     }
 }

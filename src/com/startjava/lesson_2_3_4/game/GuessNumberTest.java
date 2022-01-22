@@ -4,22 +4,9 @@ import java.util.Scanner;
 
 public class GuessNumberTest {
 
-    private static boolean isNext() {
-        Scanner scanner = new Scanner(System.in);
-        String continueGameAnswer = "";
-        while (!continueGameAnswer.equals("no")) {
-            System.out.print("Хотите продолжить игру? [yes/no]:");
-            continueGameAnswer = scanner.nextLine();
-            if (continueGameAnswer.equals("yes")) {
-                return true;
-            }
-        }
-        return false;
-    }
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
         System.out.print("Имя первого игрока:");
         Player player1 = new Player(scanner.nextLine());
         System.out.print("Имя второго игрока:");
@@ -29,5 +16,17 @@ public class GuessNumberTest {
         do {
             game.start();
         } while (isNext());
+    }
+
+    private static boolean isNext() {
+        String continueGameAnswer = "";
+        while (!continueGameAnswer.equals("no")) {
+            System.out.print("Хотите продолжить игру? [yes/no]:");
+            continueGameAnswer = scanner.nextLine();
+            if (continueGameAnswer.equals("yes")) {
+                return true;
+            }
+        }
+        return false;
     }
 }

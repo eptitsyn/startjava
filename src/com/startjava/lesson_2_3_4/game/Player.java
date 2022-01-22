@@ -3,13 +3,16 @@ package com.startjava.lesson_2_3_4.game;
 import java.util.Arrays;
 
 public class Player {
-    public int MAX_GUESS_TRIES = 10;
+    private int maxGuessTries = 10;
     private String name;
-    private int[] numbers = new int[MAX_GUESS_TRIES];
+    private int[] numbers = new int[maxGuessTries];
     private int tryCount;
-
     public Player(String name) {
         this.name = name;
+    }
+
+    public int[] getNumbers() {
+        return numbers;
     }
 
     public String getName() {
@@ -24,16 +27,14 @@ public class Player {
     }
 
     public void setNumber(int number) {
-        if (tryCount < MAX_GUESS_TRIES) {
+        if (tryCount < maxGuessTries) {
             numbers[tryCount] = number;
             tryCount++;
-        } else {
-            System.out.println("У " + name + " закончились попытки");
         }
     }
 
-    public int getMAX_GUESS_TRIES() {
-        return MAX_GUESS_TRIES;
+    public int getMaxGuessTries() {
+        return maxGuessTries;
     }
 
     public int getTryCount() {
@@ -41,11 +42,7 @@ public class Player {
     }
 
     public boolean hasTries() {
-        return tryCount < MAX_GUESS_TRIES;
-    }
-
-    public void printNumbers() {
-        System.out.println(Arrays.toString(Arrays.copyOf(numbers, tryCount)));
+        return tryCount < maxGuessTries;
     }
 
     public void clearNumbers() {

@@ -1,5 +1,6 @@
 package com.startjava.lesson_2_3_4.game;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -18,13 +19,13 @@ public class GuessNumber {
         hiddenNumber = generateSecretNumber();
         playerOne.clearNumbers();
         playerTwo.clearNumbers();
-        System.out.println("У каждого игрока " + playerOne.getMAX_GUESS_TRIES() + " попыток");
+        System.out.println("У каждого игрока " + playerOne.getMaxGuessTries() + " попыток");
         do {
             currentPlayer = (currentPlayer == playerOne) ? playerTwo : playerOne;
         } while (makeMove() && (playerOne.hasTries() || playerTwo.hasTries()));
         System.out.println("Названные числа:");
-        playerOne.printNumbers();
-        playerTwo.printNumbers();
+        printPlayerNumbers(playerOne);
+        printPlayerNumbers(playerTwo);
     }
 
     private int generateSecretNumber() {
@@ -34,6 +35,10 @@ public class GuessNumber {
 
     private boolean makeMove() {
         Scanner scanner = new Scanner(System.in);
+        if (!currentPlayer.hasTries()) {
+            System.out.println("У " + currentPlayer.getName() + " закончились попытки");
+            return false;
+        }
         System.out.print(currentPlayer.getName() + " введите число:");
         currentPlayer.setNumber(scanner.nextInt());
         if (!currentPlayer.hasTries()) {
@@ -48,5 +53,9 @@ public class GuessNumber {
                 + (currentPlayer.getNumber() > hiddenNumber ? " больше" : " меньше")
                 + " того, что загадал компьютер");
         return true;
+    }
+
+    private void printPlayerNumbers(Player player) {
+        System.out.println(Arrays.toString(Arrays.copyOf(player.getNumbers(), player.getTryCount())));
     }
 }
