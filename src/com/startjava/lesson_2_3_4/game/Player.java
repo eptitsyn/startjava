@@ -7,12 +7,13 @@ public class Player {
     private String name;
     private int[] numbers = new int[maxGuessTries];
     private int tryCount;
+
     public Player(String name) {
         this.name = name;
     }
 
     public int[] getNumbers() {
-        return numbers;
+        return Arrays.copyOf(numbers, tryCount);
     }
 
     public String getName() {

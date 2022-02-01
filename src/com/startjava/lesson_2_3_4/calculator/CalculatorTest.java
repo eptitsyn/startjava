@@ -12,20 +12,18 @@ public class CalculatorTest {
         do {
             System.out.println("Введите математическое выражение: ");
             System.out.println("Результат " + calculator.calculate(scanner.nextLine()));
-        } while (userAnswer());
+        } while (isNext());
     }
 
-    private static boolean userAnswer() {
-
-        while (true) {
+    private static boolean isNext() {
+        String continueGameAnswer = "";
+        while (!continueGameAnswer.equals("no")) {
             System.out.print("Хотите продолжить вычисления? [yes/no]:");
-            String continueCalculations = scanner.nextLine();
-            if (continueCalculations.equals("no")) {
-                return false;
-            }
-            if (continueCalculations.equals("yes")) {
+            continueGameAnswer = scanner.nextLine();
+            if (continueGameAnswer.equals("yes")) {
                 return true;
             }
         }
+        return false;
     }
 }
